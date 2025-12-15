@@ -12,7 +12,6 @@ shellEmulator: true
 autoInstallPeers: false
 dedupeInjectedDeps: false
 overrides:
-  rolldown: $rolldown
   vite: 'workspace:*'
   debug: 'npm:obug@^1.0.2'
 patchedDependencies:
