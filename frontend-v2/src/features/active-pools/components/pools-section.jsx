@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useAuth } from '@contexts/StacksAuthContext';
 import ContributionModal from './contribution-modal';
 
 function PoolsSection() {
+  const { isAuthenticated } = useAuth();
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   // 12 dummy pools with realistic film project data
@@ -308,8 +310,8 @@ function PoolsSection() {
           </div>
 
           {/* CTA Button */}
-          <button onClick={() => { setSelectedPool(pool); setShowModal(true); }} className="w-full py-3 px-4 bg-yellow-400 hover:bg-yellow-500 text-black font-bold rounded-lg transition duration-300">
-            Contribute
+          <button onClick={() => { setSelectedPool(pool); setShowModal(true); }} disabled={!isAuthenticated} className={`w-full py-3 px-4 font-bold rounded-lg transition duration-300 ${isAuthenticated ? 'bg-yellow-400 hover:bg-yellow-500 text-black' : 'bg-gray-600 text-gray-400 cursor-not-allowed'}`}>
+            {isAuthenticated ? 'Contribute' : 'Connect Wallet'}
           </button>
         </div>
       </div>

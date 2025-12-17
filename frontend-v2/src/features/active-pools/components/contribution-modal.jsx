@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useAuth } from '@contexts/StacksAuthContext';
 
 export default function ContributionModal({ pool, onClose, onContribute }) {
+  const { isAuthenticated } = useAuth();
   const [amount, setAmount] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState(null);
@@ -8,6 +10,10 @@ export default function ContributionModal({ pool, onClose, onContribute }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isAuthenticated) {
+      setError('Please connect your wallet to contribute');
+      return;
+    }
     const num = Number(amount);
     if (!num || num <= 0) {
       setError('Please enter a valid contribution amount');
@@ -58,7 +64,7 @@ export default function ContributionModal({ pool, onClose, onContribute }) {
               className="w-full px-4 py-3 bg-gray-900/30 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none"
             />
             <p className="text-gray-400 text-xs mt-2">Remaining goal: ${remaining.toLocaleString()}</p>
-          </div>
+          </div>disabled={!isAuthenticated} className={`flex-1 px-4 py-3 font-bold rounded-lg ${isAuthenticated ? 'bg-yellow-400 text-black' : 'bg-gray-600 text-gray-400 cursor-not-allowed'}`}>{isAuthenticated ? 'Contribute' : 'Connect Wallet'}
 
           <div className="flex gap-3 pt-4">
             <button type="button" onClick={onClose} className="flex-1 px-4 py-3 border border-gray-700 text-gray-300 rounded-lg">Cancel</button>

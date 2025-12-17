@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@contexts/StacksAuthContext';
 
 export default function DashboardLayout({ children }) {
-  const { userType } = useAuth();
+  const { userType, isAuthenticated } = useAuth();
   const location = useLocation();
 
   const filmmakerNav = [
@@ -27,6 +27,11 @@ export default function DashboardLayout({ children }) {
   ];
 
   const navToRender = userType === 'filmmaker' ? filmmakerNav : userType === 'endorser' ? endorserNav : publicNav;
+
+  // Only show layout with sidebar if authenticated
+  if (!isAuthenticated) {
+    return <>{children}</>;
+  }
 
   return (
     <div className="min-h-screen flex bg-white">

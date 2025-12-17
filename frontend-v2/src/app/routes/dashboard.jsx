@@ -11,9 +11,20 @@ export default function DashboardRouter() {
 
   if (!isAuthenticated) {
     return (
-      <div className="p-12 text-center">
-        <h2 className="text-2xl font-bold mb-4">Please connect your wallet</h2>
-        <p className="text-gray-600">You need to sign in to access your dashboard.</p>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center p-4">
+        <div className="max-w-md w-full text-center">
+          <h1 className="text-4xl font-bold text-white mb-4">Welcome to CineX</h1>
+          <p className="text-gray-300 mb-8">Connect your wallet to access your dashboard and explore opportunities in decentralized film funding.</p>
+          <div className="bg-black border border-gray-800 rounded-2xl p-8 mb-6">
+            <div className="text-yellow-400 text-5xl mb-4">🔐</div>
+            <h3 className="text-xl font-semibold text-white mb-2">Wallet Connection Required</h3>
+            <p className="text-gray-400 text-sm mb-6">Sign in with your Stacks wallet to get started</p>
+            <button onClick={() => navigate('/login')} className="w-full px-6 py-3 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition duration-300">
+              Connect Wallet
+            </button>
+          </div>
+          <p className="text-gray-500 text-xs">Secure • Non-custodial • Decentralized</p>
+        </div>
       </div>
     );
   }
