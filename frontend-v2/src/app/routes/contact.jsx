@@ -3,7 +3,7 @@ import ContactFormSection from '@features/contact/components/contact-form-sectio
 
 function ContactPage() {
   return (
-    <PageLayout title="Contact - Global Bank">
+    <PageLayout title="Contact - CineX">
       <ContactFormSection />
     </PageLayout>
   );
