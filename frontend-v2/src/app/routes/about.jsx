@@ -2,8 +2,7 @@ import PageLayout from '@components/layout/page-layout';
 import AboutHeroSection from '@features/about/components/about-hero-section';
 import StatsSection from '@features/about/components/stats-section';
 import CompanyStorySection from '@features/about/components/company-story-section';
-import TeamSection from '@features/about/components/team-section';
-import OpenPositionsSection from '@features/about/components/open-positions-section';
+// Team and Open positions sections hidden per request
 
 function AboutPage() {
   return (
@@ -11,8 +10,7 @@ function AboutPage() {
       <AboutHeroSection />
       <StatsSection />
       <CompanyStorySection />
-      <TeamSection />
-      <OpenPositionsSection />
+      {/* TeamSection and OpenPositionsSection intentionally hidden */}
     </PageLayout>
   );
 }

@@ -1,15 +1,16 @@
 import { useState } from 'react';
+import ContributionModal from './contribution-modal';
 
 function PoolsSection() {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   // 12 dummy pools with realistic film project data
-  const pools = [
+  const initialPools = [
     {
       id: 1,
       title: 'Ethereal Dreams: A Sci-Fi Epic',
       category: 'feature',
-      image: 'https://images.unsplash.com/photo-1533928298208-27ff66555d0d?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&h=800&fit=crop',
       fundingGoal: 250000,
       currentFunding: 187500,
       investors: 1245,
@@ -22,7 +23,7 @@ function PoolsSection() {
       id: 2,
       title: 'Midnight in Marrakech',
       category: 'feature',
-      image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=800&fit=crop',
       fundingGoal: 180000,
       currentFunding: 156000,
       investors: 892,
@@ -35,7 +36,7 @@ function PoolsSection() {
       id: 3,
       title: 'Beyond the Horizon',
       category: 'documentary',
-      image: 'https://images.unsplash.com/photo-1489599810694-b5ef1786d3b3?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=800&fit=crop',
       fundingGoal: 85000,
       currentFunding: 72250,
       investors: 634,
@@ -48,7 +49,7 @@ function PoolsSection() {
       id: 4,
       title: 'The Last Station',
       category: 'short',
-      image: 'https://images.unsplash.com/photo-1516573895747-a83444e5b772?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?w=1200&h=800&fit=crop',
       fundingGoal: 35000,
       currentFunding: 28350,
       investors: 412,
@@ -61,7 +62,7 @@ function PoolsSection() {
       id: 5,
       title: 'Echoes of Tomorrow',
       category: 'feature',
-      image: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1499346030926-9a72daac6c63?w=1200&h=800&fit=crop',
       fundingGoal: 320000,
       currentFunding: 224000,
       investors: 1856,
@@ -74,7 +75,7 @@ function PoolsSection() {
       id: 6,
       title: 'Roots Deep',
       category: 'documentary',
-      image: 'https://images.unsplash.com/photo-1542478884-b1a84a8e2c1d?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=800&fit=crop',
       fundingGoal: 95000,
       currentFunding: 80750,
       investors: 723,
@@ -87,7 +88,7 @@ function PoolsSection() {
       id: 7,
       title: 'City Pulse',
       category: 'short',
-      image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1200&h=800&fit=crop',
       fundingGoal: 42000,
       currentFunding: 31500,
       investors: 289,
@@ -100,7 +101,7 @@ function PoolsSection() {
       id: 8,
       title: 'Whispers in the Dark',
       category: 'feature',
-      image: 'https://images.unsplash.com/photo-1533193566920-318db80aea6d?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?w=1200&h=800&fit=crop',
       fundingGoal: 195000,
       currentFunding: 146250,
       investors: 1023,
@@ -113,7 +114,7 @@ function PoolsSection() {
       id: 9,
       title: 'Harmony Rising',
       category: 'documentary',
-      image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&h=800&fit=crop',
       fundingGoal: 110000,
       currentFunding: 99000,
       investors: 847,
@@ -126,7 +127,7 @@ function PoolsSection() {
       id: 10,
       title: 'The Forgotten Letters',
       category: 'short',
-      image: 'https://images.unsplash.com/photo-1486882735611-87f5055b5b60?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1473186505569-9c61870c11f9?w=1200&h=800&fit=crop',
       fundingGoal: 28000,
       currentFunding: 21000,
       investors: 198,
@@ -139,7 +140,7 @@ function PoolsSection() {
       id: 11,
       title: 'Neon Paradise',
       category: 'feature',
-      image: 'https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=800&fit=crop',
       fundingGoal: 275000,
       currentFunding: 192500,
       investors: 1567,
@@ -152,7 +153,7 @@ function PoolsSection() {
       id: 12,
       title: 'Voices of the Unheard',
       category: 'documentary',
-      image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1509099836639-18ba66a66b5f?w=1200&h=800&fit=crop',
       fundingGoal: 78000,
       currentFunding: 66300,
       investors: 601,
@@ -163,7 +164,64 @@ function PoolsSection() {
     }
   ];
 
-  const categories = ['all', 'feature', 'documentary', 'short'];
+  // Additional creative media pools
+  initialPools.push(
+    {
+      id: 13,
+      title: 'Into the Metascape',
+      category: 'ar-vr',
+      image: 'https://images.unsplash.com/photo-1523362628745-0c100150b8f0?w=500&h=300&fit=crop',
+      fundingGoal: 120000,
+      currentFunding: 45000,
+      investors: 214,
+      daysLeft: 28,
+      featured: false,
+      description: 'An immersive AR/VR experience blending narrative cinema with interactive environments.',
+      tags: ['AR/VR', 'Immersive', 'Interactive']
+    },
+    {
+      id: 14,
+      title: 'Soundscapes of Tomorrow',
+      category: 'music',
+      image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=500&h=300&fit=crop',
+      fundingGoal: 40000,
+      currentFunding: 18000,
+      investors: 342,
+      daysLeft: 12,
+      featured: false,
+      description: 'An independent album and music video series produced with emerging artists.',
+      tags: ['Music', 'Album', 'Indie']
+    },
+    {
+      id: 15,
+      title: 'Stories After Dark',
+      category: 'podcast',
+      image: 'https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?w=500&h=300&fit=crop',
+      fundingGoal: 15000,
+      currentFunding: 7200,
+      investors: 128,
+      daysLeft: 22,
+      featured: false,
+      description: 'A serialized audio documentary podcast exploring untold human stories.',
+      tags: ['Podcast', 'Audio', 'Documentary']
+    }
+  );
+
+  const [pools, setPools] = useState(initialPools);
+  const [selectedPool, setSelectedPool] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const categories = [
+    { id: 'all', label: 'All Pools' },
+    { id: 'feature', label: 'Feature' },
+    { id: 'documentary', label: 'Documentary' },
+    { id: 'short', label: 'Short' },
+    { id: 'ar-vr', label: 'AR/VR' },
+    { id: 'music', label: 'Music' },
+    { id: 'podcast', label: 'Podcast' },
+  ];
+
+  const getCategoryLabel = (id) => categories.find(c => c.id === id)?.label || id;
   
   const filteredPools = selectedCategory === 'all' 
     ? pools 
@@ -250,8 +308,8 @@ function PoolsSection() {
           </div>
 
           {/* CTA Button */}
-          <button className="w-full py-3 px-4 bg-yellow-400 hover:bg-yellow-500 text-black font-bold rounded-lg transition duration-300">
-            View Details
+          <button onClick={() => { setSelectedPool(pool); setShowModal(true); }} className="w-full py-3 px-4 bg-yellow-400 hover:bg-yellow-500 text-black font-bold rounded-lg transition duration-300">
+            Contribute
           </button>
         </div>
       </div>
@@ -275,15 +333,15 @@ function PoolsSection() {
         <div className="flex flex-wrap justify-center gap-4 mb-20">
           {categories.map((category) => (
             <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-3 rounded-full font-medium transition duration-300 capitalize ${
-                selectedCategory === category
+              key={category.id}
+              onClick={() => setSelectedCategory(category.id)}
+              className={`px-6 py-3 rounded-full font-medium transition duration-300 ${
+                selectedCategory === category.id
                   ? 'bg-yellow-400 text-black'
                   : 'bg-gray-900/30 text-gray-300 border border-gray-700 hover:border-yellow-400'
               }`}
             >
-              {category === 'all' ? 'All Pools' : category}
+              {category.label}
             </button>
           ))}
         </div>
@@ -301,8 +359,8 @@ function PoolsSection() {
         {/* Pool Grid */}
         <div>
           {selectedCategory !== 'all' && (
-            <h2 className="text-2xl text-white font-bold mb-8 capitalize">
-              {selectedCategory} Films
+            <h2 className="text-2xl text-white font-bold mb-8">
+              {getCategoryLabel(selectedCategory)}
             </h2>
           )}
           <div className="flex flex-wrap -m-4">
@@ -317,6 +375,17 @@ function PoolsSection() {
           <div className="text-center py-16">
             <p className="text-gray-400 text-lg">No pools found in this category.</p>
           </div>
+        )}
+        {showModal && selectedPool && (
+          <ContributionModal
+            pool={selectedPool}
+            onClose={() => { setSelectedPool(null); setShowModal(false); }}
+            onContribute={(amount) => {
+              setPools(prev => prev.map(p => p.id === selectedPool.id ? { ...p, currentFunding: p.currentFunding + amount, investors: p.investors + 1 } : p));
+              setSelectedPool(null);
+              setShowModal(false);
+            }}
+          />
         )}
       </div>
     </section>

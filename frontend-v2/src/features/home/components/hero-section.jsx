@@ -24,12 +24,12 @@ function HeroSection() {
           <div className="max-w-3xl mx-auto">
             {/* Main Heading */}
             <h1 className="font-heading mb-6 text-5xl md:text-7xl lg:text-8xl text-white tracking-tighter drop-shadow-lg">
-              The Future of Film Finance is Here
+              Empowering Film & Creative Media.
             </h1>
 
             {/* Subheading */}
             <p className="mb-12 text-xl md:text-2xl text-gray-100 drop-shadow-lg max-w-2xl mx-auto">
-              Join thousands of filmmakers and investors on CineX. Fund extraordinary projects. Own the future of cinema.
+              Join thousands of filmmakers, creatives and investors on CineX. Fund Your Vision. Collaborate, and Own the Future in Film & Creative Media
             </p>
 
             {/* CTA Buttons */}

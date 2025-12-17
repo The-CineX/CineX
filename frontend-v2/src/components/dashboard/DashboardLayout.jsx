@@ -8,7 +8,9 @@ export default function DashboardLayout({ children }) {
 
   const filmmakerNav = [
     { to: '/dashboard/filmmaker', label: 'Overview' },
-    { to: '/dashboard/filmmaker/crowdfunding', label: 'Crowdfunding Module' },
+    { to: '/dashboard/filmmaker/crowdfunding', label: 'My Campaigns' },
+    { to: '/dashboard/filmmaker/create-campaign', label: 'Create Campaign' },
+    { to: '/dashboard/filmmaker/create-campaign?type=private', label: 'Create Private Pool' },
     { to: '/dashboard/filmmaker/co-ep', label: 'Co-EP Rotating Funds' },
     { to: '/dashboard/filmmaker/verification', label: 'Film Verification' },
     { to: '/dashboard/filmmaker/settings', label: 'Settings' },
@@ -34,11 +36,13 @@ export default function DashboardLayout({ children }) {
           <p className="text-sm text-gray-300 mb-6">Dashboard</p>
           <nav className="space-y-2">
             {navToRender.map((item) => {
-              const active = location.pathname === item.to;
+              const path = item.to.split('?')[0];
+              const active = location.pathname === path || location.pathname.startsWith(path + '/') || location.pathname.startsWith(path);
               return (
                 <Link
                   key={item.to}
                   to={item.to}
+                  aria-current={active ? 'page' : undefined}
                   className={`block px-4 py-2 rounded-md text-sm ${active ? 'bg-yellow-500 text-black font-semibold' : 'text-gray-200 hover:bg-gray-800'}`}
                 >
                   {item.label}

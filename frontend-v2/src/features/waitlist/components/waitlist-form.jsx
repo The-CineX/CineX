@@ -60,120 +60,20 @@ function WaitlistForm() {
             </p>
           </div>
 
-          {/* Form Container */}
-          <div className="bg-gradient-radial-dark border border-gray-900/30 rounded-3xl p-8 lg:p-12">
-            {submitted ? (
-              // Success Message
-              <div className="text-center py-12">
-                <div className="mb-6 flex justify-center">
-                  <svg className="w-16 h-16 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-3xl text-white font-bold mb-2">Welcome to CineX!</h3>
-                <p className="text-gray-300 text-lg">
-                  We've added you to our waitlist. Check your email for updates!
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Error Message */}
-                {error && (
-                  <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
-                    <p className="text-red-400 text-sm">{error}</p>
-                  </div>
-                )}
-
-                {/* Full Name Field */}
-                <div>
-                  <label htmlFor="fullName" className="block text-sm text-gray-300 font-medium mb-3">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    required
-                    placeholder="John Doe"
-                    className="w-full px-6 py-3 bg-gray-900/30 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition"
-                  />
-                </div>
-
-                {/* Email Field */}
-                <div>
-                  <label htmlFor="email" className="block text-sm text-gray-300 font-medium mb-3">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="you@example.com"
-                    className="w-full px-6 py-3 bg-gray-900/30 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition"
-                  />
-                </div>
-
-                {/* User Type Selection */}
-                <div>
-                  <label className="block text-sm text-gray-300 font-medium mb-3">
-                    I'm interested as a...
-                  </label>
-                  <div className="flex gap-4">
-                    <label className="flex items-center cursor-pointer">
-                      <input
-                        type="radio"
-                        name="userType"
-                        value="investor"
-                        checked={formData.userType === 'investor'}
-                        onChange={handleChange}
-                        className="w-4 h-4 text-yellow-400 bg-gray-900/30 border-gray-700 focus:ring-2 focus:ring-yellow-400"
-                      />
-                      <span className="ml-3 text-gray-300">Investor</span>
-                    </label>
-                    <label className="flex items-center cursor-pointer">
-                      <input
-                        type="radio"
-                        name="userType"
-                        value="filmmaker"
-                        checked={formData.userType === 'filmmaker'}
-                        onChange={handleChange}
-                        className="w-4 h-4 text-yellow-400 bg-gray-900/30 border-gray-700 focus:ring-2 focus:ring-yellow-400"
-                      />
-                      <span className="ml-3 text-gray-300">Filmmaker</span>
-                    </label>
-                  </div>
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-4 px-8 bg-yellow-400 hover:bg-yellow-500 disabled:bg-yellow-300 text-black font-bold rounded-lg transition duration-300 flex items-center justify-center gap-2"
-                >
-                  {loading ? (
-                    <>
-                      <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Joining...
-                    </>
-                  ) : (
-                    'Join the Waitlist'
-                  )}
-                </button>
-
-                {/* Privacy Notice */}
-                <p className="text-xs text-gray-400 text-center">
-                  We respect your privacy. Unsubscribe at any time.
-                </p>
-              </form>
-            )}
+          {/* Google Form Button */}
+          <div className="mt-12 text-center">
+            <p className="text-gray-400 mb-4">Join Waitlist Here</p>
+            <a
+              href="https://forms.gle/VPsAYm3PUmyGTnGq7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white font-semibold rounded-lg transition duration-300"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              Open Google Form
+            </a>
           </div>
         </div>
       </div>

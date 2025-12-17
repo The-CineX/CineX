@@ -12,6 +12,7 @@ const DashboardPublic = lazy(() => import('@routes/dashboard-public'));
 const DashboardFilmmaker = lazy(() => import('@routes/dashboard-filmmaker'));
 const DashboardEndorser = lazy(() => import('@routes/dashboard-endorser'));
 const FilmmakerCrowdfunding = lazy(() => import('@routes/filmmaker-crowdfunding'));
+const CreateCampaign = lazy(() => import('@routes/create-campaign'));
 const ContactPage = lazy(() => import('@routes/contact'));
 const LoginPage = lazy(() => import('@routes/login'));
 const RegisterPage = lazy(() => import('@routes/register'));
@@ -44,6 +45,7 @@ const routes = [
   createRoute('/dashboard/public', DashboardPublic, 'dashboard-public'),
   createRoute('/dashboard/filmmaker', DashboardFilmmaker, 'dashboard-filmmaker'),
   createRoute('/dashboard/filmmaker/crowdfunding', FilmmakerCrowdfunding, 'filmmaker-crowdfunding'),
+  createRoute('/dashboard/filmmaker/create-campaign', CreateCampaign, 'create-campaign'),
   createRoute('/dashboard/endorser', DashboardEndorser, 'dashboard-endorser'),
   createRoute('/contact', ContactPage, 'contact', 'Contact', true),
   createRoute('/login', LoginPage, 'login', 'Login'),

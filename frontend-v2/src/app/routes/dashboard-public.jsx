@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '@contexts/StacksAuthContext';
 import DashboardLayout from '@components/dashboard/DashboardLayout';
 
@@ -16,25 +16,31 @@ export default function PublicDashboard() {
   return (
     <DashboardLayout>
       <section className="container mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold mb-4">Public Backer Dashboard</h2>
-        <p className="text-gray-600 mb-6">Browse public campaigns and join filmmaker private pools.</p>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 bg-white rounded-lg shadow">
-            <h3 className="font-semibold mb-2">Active Public Campaigns</h3>
-            <ul className="text-sm text-gray-700">
-              <li>• Ethereal Dreams — 75% funded</li>
-              <li>• Midnight in Marrakech — 87% funded</li>
-              <li>• Beyond the Horizon — 85% funded</li>
-            </ul>
-            <div className="mt-4">
-              <button className="px-4 py-2 bg-yellow-400 rounded text-black font-bold">Explore Pools</button>
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold">Public Backer Dashboard</h2>
+              <p className="text-gray-400">Browse public campaigns and join filmmaker private pools.</p>
             </div>
           </div>
 
-          <div className="p-6 bg-white rounded-lg shadow">
-            <h3 className="font-semibold mb-2">Your Private Pool Invitations</h3>
-            <p className="text-sm text-gray-700">No private invitations yet. Browse filmmakers to join private pools.</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="p-6 bg-black border border-gray-800 rounded-2xl text-white">
+              <h3 className="font-semibold mb-2 text-white">Active Public Campaigns</h3>
+              <ul className="text-sm text-gray-400">
+                <li>• Ethereal Dreams — <strong className="text-yellow-400">75% funded</strong></li>
+                <li>• Midnight in Marrakech — <strong className="text-yellow-400">87% funded</strong></li>
+                <li>• Beyond the Horizon — <strong className="text-yellow-400">85% funded</strong></li>
+              </ul>
+              <div className="mt-4">
+                <Link to="/active-pools" className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400 rounded text-black font-bold">Explore Pools</Link>
+              </div>
+            </div>
+
+            <div className="p-6 bg-black border border-gray-800 rounded-2xl text-white">
+              <h3 className="font-semibold mb-2 text-white">Your Private Pool Invitations</h3>
+              <p className="text-sm text-gray-400">No private invitations yet. Browse filmmakers to join private pools.</p>
+            </div>
           </div>
         </div>
       </section>
