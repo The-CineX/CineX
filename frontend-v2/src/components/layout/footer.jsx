@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { getRouteByName } from '@app/router';
+import { useAuth } from '@contexts/StacksAuthContext';
 
 /**
  * Main site footer with links and branding
@@ -18,14 +20,10 @@ function Footer() {
               <h2 className="font-heading mb-6 text-7xl text-white tracking-8xl">
                 Ready to launch a public campaign or form a private Co-EP funding pool?
               </h2>
-              <a
-                className="mb-8 text-gray-300 relative z-10 hover:text-white transition-colors duration-200"
-                href="https://cinex.app/register"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                cinex.app/register
-              </a>
+              <div className="mb-8">
+                {/* Replace external register link with internal Create Campaign CTA */}
+                <FooterCreateCampaign />
+              </div>
               <img
                 className="absolute -bottom-24 right-0 z-0"
                 src="/images/lines2.svg"
@@ -152,5 +150,97 @@ function Footer() {
     </>
   );
 }
+
+      function FooterCreateCampaign() {
+        const navigate = useNavigate();
+        const { isAuthenticated, signIn, isLoading } = useAuth();
+        const [showInstallModal, setShowInstallModal] = useState(false);
+
+        const detectWalletInstalled = () => {
+          if (typeof window === 'undefined') return false;
+          // Common injects: xverse, hiro (hiro-wallet)
+          // eslint-disable-next-line no-undef
+          return Boolean(window.xverse || window.hiroWallet || window.hiro || window?.StacksProvider || window?.stacksProvider);
+        };
+
+        const walletInstalled = detectWalletInstalled();
+
+        const handleClick = async (e) => {
+          e?.preventDefault();
+          if (isAuthenticated) {
+            navigate('/dashboard/filmmaker/create-campaign');
+            return;
+          }
+
+          // If no wallet detected, show install guidance modal
+          if (!walletInstalled) {
+            setShowInstallModal(true);
+            return;
+          }
+
+          try {
+            await signIn();
+          } catch (err) {
+            console.error('Sign-in failed:', err);
+            navigate('/login');
+          }
+        };
+
+        const handleTryConnect = async () => {
+          setShowInstallModal(false);
+          try {
+            await signIn();
+          } catch (err) {
+            console.error('Sign-in failed:', err);
+            navigate('/login');
+          }
+        };
+
+        return (
+          <>
+            <button
+              onClick={handleClick}
+              disabled={isLoading}
+              className={`mb-8 px-5 py-3 font-semibold rounded-lg relative z-10 transition-colors duration-200 ${isAuthenticated ? 'bg-yellow-400 text-black hover:bg-yellow-500' : 'bg-transparent border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black'}`}
+            >
+              {isAuthenticated ? 'Create Campaign' : (isLoading ? 'Connecting...' : 'Connect Wallet')}
+            </button>
+
+            {showInstallModal && (
+              <InstallWalletModal
+                onClose={() => setShowInstallModal(false)}
+                onTryConnect={handleTryConnect}
+              />
+            )}
+          </>
+        );
+      }
+
+      function InstallWalletModal({ onClose, onTryConnect }) {
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/70" onClick={onClose}></div>
+            <div className="relative bg-black border border-gray-800 rounded-2xl p-6 max-w-lg w-full mx-4 text-white">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-xl font-bold">No Wallet Detected</h3>
+                  <p className="text-gray-400 mt-2">To create campaigns you need a Stacks-compatible wallet. Install one of the recommended wallets below or try connecting anyway.</p>
+                </div>
+                <button onClick={onClose} className="text-gray-400 hover:text-gray-200">✕</button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                <a target="_blank" rel="noreferrer" href="https://xverse.app/" className="px-4 py-3 bg-white text-black rounded-lg text-center font-semibold">Install Xverse</a>
+                <a target="_blank" rel="noreferrer" href="https://wallet.hiro.so/" className="px-4 py-3 bg-white text-black rounded-lg text-center font-semibold">Install Hiro</a>
+              </div>
+
+              <div className="flex gap-3">
+                <button onClick={onTryConnect} className="flex-1 px-4 py-3 bg-yellow-400 text-black font-bold rounded-lg">Try Connect Anyway</button>
+                <button onClick={onClose} className="flex-1 px-4 py-3 border border-gray-700 text-gray-300 rounded-lg">Close</button>
+              </div>
+            </div>
+          </div>
+        );
+      }
 
 export default Footer;

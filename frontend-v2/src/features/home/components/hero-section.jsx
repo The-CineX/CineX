@@ -46,15 +46,15 @@ function HeroSection() {
             {/* Stats Row */}
             <div className="mt-16 grid grid-cols-3 gap-8 max-w-xl mx-auto">
               <div className="text-center backdrop-blur-sm bg-black/20 p-4 rounded-xl">
-                <p className="text-3xl md:text-4xl text-yellow-400 font-bold">$2.5M+</p>
+                <p className="text-3xl md:text-4xl text-yellow-400 font-bold">$0M+</p>
                 <p className="text-sm text-gray-300 mt-2">Funded</p>
               </div>
               <div className="text-center backdrop-blur-sm bg-black/20 p-4 rounded-xl">
-                <p className="text-3xl md:text-4xl text-yellow-400 font-bold">500+</p>
+                <p className="text-3xl md:text-4xl text-yellow-400 font-bold">1+</p>
                 <p className="text-sm text-gray-300 mt-2">Projects</p>
               </div>
               <div className="text-center backdrop-blur-sm bg-black/20 p-4 rounded-xl">
-                <p className="text-3xl md:text-4xl text-yellow-400 font-bold">50k+</p>
+                <p className="text-3xl md:text-4xl text-yellow-400 font-bold">5+</p>
                 <p className="text-sm text-gray-300 mt-2">Community</p>
               </div>
             </div>

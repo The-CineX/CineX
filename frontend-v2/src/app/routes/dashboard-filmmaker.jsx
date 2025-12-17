@@ -142,17 +142,6 @@ export default function FilmmakerDashboard() {
             </div>
           </div>
 
-          {/* Call to Action Section */}
-          <div className="mt-10 p-8 bg-gradient-to-r from-yellow-400/10 to-yellow-400/5 border border-yellow-400/30 rounded-2xl text-white">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Ready to launch a public campaign?</h3>
-                <p className="text-gray-300">Create a campaign or private Co-EP funding pool to start raising funds for your next project.</p>
-              </div>
-              <div className="flex gap-4 ml-6">
-                <Link to="/dashboard/filmmaker/create-campaign" className="px-6 py-3 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition duration-300 whitespace-nowrap">Create Campaign</Link>
-                <button onClick={() => navigate('/dashboard/filmmaker/create-campaign?type=private')} className="px-6 py-3 border border-yellow-400 text-yellow-400 font-bold rounded-lg hover:bg-yellow-400 hover:text-black transition duration-300 whitespace-nowrap">Create Private Pool</button>
-              </div>
             </div>
           </div>
         </div>
