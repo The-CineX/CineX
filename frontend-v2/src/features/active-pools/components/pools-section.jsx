@@ -382,10 +382,11 @@ function PoolsSection() {
           <ContributionModal
             pool={selectedPool}
             onClose={() => { setSelectedPool(null); setShowModal(false); }}
-            onContribute={(amount) => {
-              setPools(prev => prev.map(p => p.id === selectedPool.id ? { ...p, currentFunding: p.currentFunding + amount, investors: p.investors + 1 } : p));
-              setSelectedPool(null);
-              setShowModal(false);
+            onContribute={async (amount) => {
+              const updatedPool = { ...selectedPool, currentFunding: selectedPool.currentFunding + amount, investors: selectedPool.investors + 1 };
+              setPools(prev => prev.map(p => p.id === selectedPool.id ? updatedPool : p));
+              // return updated pool so modal can show confirmation
+              return updatedPool;
             }}
           />
         )}

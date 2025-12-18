@@ -7,9 +7,11 @@ export default function ContributionModal({ pool, onClose, onContribute }) {
   const [name, setName] = useState('');
   const [error, setError] = useState(null);
   const remaining = Math.max(0, pool.fundingGoal - pool.currentFunding);
+  const [success, setSuccess] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e?.preventDefault();
+    setError(null);
     const num = Number(amount);
     if (!num || num <= 0) {
       setError('Please enter a valid contribution amount');
@@ -19,8 +21,14 @@ export default function ContributionModal({ pool, onClose, onContribute }) {
       setError(`Amount exceeds remaining goal (${remaining.toLocaleString()})`);
       return;
     }
-    // Mock contribution processing
-    onContribute(num);
+    try {
+      const updated = await onContribute(num);
+      const newRemaining = Math.max(0, updated.fundingGoal - updated.currentFunding);
+      setSuccess({ contributed: num, remaining: newRemaining, updated });
+      setAmount('');
+    } catch (err) {
+      setError('Contribution failed');
+    }
   };
 
   const handleAction = async (e) => {
@@ -33,7 +41,7 @@ export default function ContributionModal({ pool, onClose, onContribute }) {
       }
       return;
     }
-    handleSubmit(e);
+    await handleSubmit(e);
   };
 
   return (
@@ -51,6 +59,17 @@ export default function ContributionModal({ pool, onClose, onContribute }) {
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && <div className="p-3 bg-red-500/10 border border-red-500/30 rounded"><p className="text-red-400 text-sm">{error}</p></div>}
 
+          {success && (
+            <div className="p-4 bg-green-900/20 border border-green-700 rounded-lg">
+              <p className="text-green-300 font-semibold">Thank you{success.updated ? `, ${name || 'supporter'}` : ''}!</p>
+              <p className="text-white mt-2">You contributed <strong className="text-yellow-400">{success.contributed.toLocaleString()} STX</strong> to <strong className="text-white">{pool.title}</strong>.</p>
+              <p className="text-gray-400 mt-1">Remaining to reach goal: <strong className="text-white">{success.remaining.toLocaleString()} STX</strong></p>
+              <div className="mt-4 flex gap-3">
+                <button type="button" onClick={() => { onClose(); }} className="flex-1 px-4 py-3 font-bold rounded-lg bg-yellow-400 text-black">Close</button>
+                <button type="button" onClick={() => setSuccess(null)} className="flex-1 px-4 py-3 border border-gray-700 text-gray-300 rounded-lg">Make another contribution</button>
+              </div>
+            </div>
+          )}
           <div>
             <label className="block text-sm text-gray-300 mb-2">Your Name (optional)</label>
             <input
@@ -75,12 +94,14 @@ export default function ContributionModal({ pool, onClose, onContribute }) {
             <p className="text-gray-400 text-xs mt-2">Remaining goal: {remaining.toLocaleString()} STX</p>
           </div>
 
-          <div className="flex gap-3 pt-4">
-            <button type="button" onClick={onClose} className="flex-1 px-4 py-3 border border-gray-700 text-gray-300 rounded-lg">Cancel</button>
-            <button type="button" onClick={handleAction} className={`flex-1 px-4 py-3 font-bold rounded-lg ${isAuthenticated ? 'bg-yellow-400 text-black' : 'bg-gray-600 text-gray-400'}`}>
-              {isAuthenticated ? 'Contribute' : 'Connect Wallet'}
-            </button>
-          </div>
+          {!success && (
+            <div className="flex gap-3 pt-4">
+              <button type="button" onClick={onClose} className="flex-1 px-4 py-3 border border-gray-700 text-gray-300 rounded-lg">Cancel</button>
+              <button type="button" onClick={handleAction} className={`flex-1 px-4 py-3 font-bold rounded-lg ${isAuthenticated ? 'bg-yellow-400 text-black' : 'bg-gray-600 text-gray-400'}`}>
+                {isAuthenticated ? 'Contribute' : 'Connect Wallet'}
+              </button>
+            </div>
+          )}
         </form>
       </div>
     </div>
