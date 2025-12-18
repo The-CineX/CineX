@@ -102,9 +102,6 @@ const Header = React.memo(function Header() {
                     </button>
                   ) : userData && isAuthenticated ? (
                     <div className="flex items-center gap-4">
-                      <span className="text-white text-sm" title={getStacksAddress()}>
-                        {getStacksAddress().slice(0, 6)}...{getStacksAddress().slice(-4)}
-                      </span>
                       <button
                         className="inline-block px-8 py-4 text-white hover:text-black tracking-tighter hover:bg-yellow-400 border-2 border-white focus:border-yellow-400/40 hover:border-yellow-400 focus:ring-4 focus:ring-yellow-400/40 rounded-full transition duration-300"
                         onClick={signOut}
