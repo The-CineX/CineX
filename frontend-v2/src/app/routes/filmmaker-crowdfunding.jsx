@@ -56,7 +56,7 @@ export default function FilmmakerCrowdfunding() {
               />
               <input
                 required
-                placeholder="Target Amount (USD)"
+                placeholder="Target Amount (STX)"
                 value={form.target}
                 onChange={(e) => setForm({ ...form, target: e.target.value })}
                 className="p-3 border rounded"

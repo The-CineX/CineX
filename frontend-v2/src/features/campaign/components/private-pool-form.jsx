@@ -162,7 +162,7 @@ export default function PrivatePoolForm({ onSubmit, onCancel }) {
       <div className="grid md:grid-cols-3 gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-3">
-            Target Amount (USD) *
+            Target Amount (STX) *
           </label>
           <input
             type="number"
@@ -180,7 +180,7 @@ export default function PrivatePoolForm({ onSubmit, onCancel }) {
 
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-3">
-            Minimum Investment (USD) *
+            Minimum Investment (STX) *
           </label>
           <input
             type="number"

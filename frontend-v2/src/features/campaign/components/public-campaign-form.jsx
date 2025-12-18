@@ -92,7 +92,6 @@ export default function PublicCampaignForm({ onSubmit, onCancel }) {
         />
         {errors.logline && <p className="text-red-400 text-sm mt-1">{errors.logline}</p>}
         <p className="text-gray-400 text-xs mt-1">{formData.logline.length}/150</p>
-      </div>
 
       {/* Film Genre */}
       <div>
@@ -154,7 +153,7 @@ export default function PublicCampaignForm({ onSubmit, onCancel }) {
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-3">
-            Target Funding Amount (USD) *
+            Target Funding Amount (STX) *
           </label>
           <input
             type="number"
