@@ -106,13 +106,13 @@ const Header = React.memo(function Header() {
       <div
         className={`${
           mobileNavOpen ? 'block' : 'hidden'
-        } fixed top-0 left-0 bottom-0 w-4/6 sm:max-w-xs z-50`}
+        } fixed top-0 left-0 bottom-0 w-4/6 sm:max-w-xs z-50 pointer-events-auto`}
       >
         <div
-          className="fixed inset-0 bg-black opacity-60"
+          className="fixed inset-0 z-0 bg-black opacity-60 pointer-events-auto"
           onClick={toggleMobileNav}
         ></div>
-        <nav className="relative z-10 px-9 pt-8 h-full bg-black overflow-y-auto">
+        <nav className="relative z-10 px-9 pt-8 h-full bg-black overflow-y-auto pointer-events-auto">
           <div className="flex flex-wrap justify-between h-full">
             <div className="w-full">
               <div className="flex items-center justify-between -m-2">
