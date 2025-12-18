@@ -142,8 +142,6 @@ export default function FilmmakerDashboard() {
             </div>
           </div>
 
-            </div>
-          </div>
         </div>
       </section>
     </DashboardLayout>
