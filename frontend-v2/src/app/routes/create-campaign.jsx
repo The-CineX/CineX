@@ -125,7 +125,7 @@ export default function CreateCampaign() {
                 <div className="grid md:grid-cols-3 gap-6">
                   <div>
                     <p className="text-gray-400 mb-2 text-sm">Target Amount</p>
-                    <p className="text-white text-xl font-bold">${Number(formData.targetAmount).toLocaleString()}</p>
+                    <p className="text-white text-xl font-bold">{Number(formData.targetAmount).toLocaleString()} STX</p>
                   </div>
                   <div>
                     <p className="text-gray-400 mb-2 text-sm">Funding Period</p>
@@ -134,7 +134,7 @@ export default function CreateCampaign() {
                   {formData.type === 'private-pool' && (
                     <div>
                       <p className="text-gray-400 mb-2 text-sm">Min. Investment</p>
-                      <p className="text-white text-xl font-bold">${Number(formData.minInvestment).toLocaleString()}</p>
+                      <p className="text-white text-xl font-bold">{Number(formData.minInvestment).toLocaleString()} STX</p>
                     </div>
                   )}
                 </div>

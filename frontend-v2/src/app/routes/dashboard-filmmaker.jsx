@@ -124,7 +124,7 @@ export default function FilmmakerDashboard() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-semibold">Beyond the Horizon</p>
-                    <p className="text-sm text-gray-400">Completed — $85,000 raised</p>
+                    <p className="text-sm text-gray-400">Completed — 85,000 STX raised</p>
                   </div>
                   <Link to="/dashboard/filmmaker/crowdfunding" className="px-3 py-1 border border-gray-700 text-gray-300 rounded font-medium">View</Link>
                 </div>
@@ -134,7 +134,7 @@ export default function FilmmakerDashboard() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-semibold">City Pulse</p>
-                    <p className="text-sm text-gray-400">Completed — $42,000 raised</p>
+                    <p className="text-sm text-gray-400">Completed — 42,000 STX raised</p>
                   </div>
                   <Link to="/dashboard/filmmaker/crowdfunding" className="px-3 py-1 border border-gray-700 text-gray-300 rounded font-medium">View</Link>
                 </div>
