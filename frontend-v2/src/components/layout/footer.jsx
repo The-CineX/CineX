@@ -168,7 +168,8 @@ function Footer() {
         const handleClick = async (e) => {
           e?.preventDefault();
           if (isAuthenticated) {
-            navigate('/dashboard/filmmaker/create-campaign');
+            // Open create campaign in a new tab to keep user on current page
+            window.open('/dashboard/filmmaker/create-campaign', '_blank');
             return;
           }
 
@@ -180,6 +181,8 @@ function Footer() {
 
           try {
             await signIn();
+            // After successful sign-in, open create page in new tab
+            window.open('/dashboard/filmmaker/create-campaign', '_blank');
           } catch (err) {
             console.error('Sign-in failed:', err);
             navigate('/login');
@@ -190,6 +193,8 @@ function Footer() {
           setShowInstallModal(false);
           try {
             await signIn();
+            // After trying to connect from modal, open create page in a new tab
+            window.open('/dashboard/filmmaker/create-campaign', '_blank');
           } catch (err) {
             console.error('Sign-in failed:', err);
             navigate('/login');
