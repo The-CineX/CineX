@@ -16,25 +16,30 @@ export class EscrowService {
     const contractName = getContractName('escrow');
 
     try {
-      await openContractCall({
-        contractAddress,
-        contractName,
-        functionName: 'deposit-to-campaign',
-        functionArgs: [principalCV(contractAddress), uintCV(Number(amount))],
-        network,
-        appDetails: { name: 'CineX' },
-      });
+        const txId = await new Promise<string>((resolve, reject) => {
+          openContractCall({
+            contractAddress,
+            contractName,
+            functionName: 'deposit-to-campaign',
+            // deposit-to-campaign expects (campaign-id uint, amount uint)
+            functionArgs: [uintCV(Number(campaignId)), uintCV(Number(amount))],
+            network,
+            appDetails: { name: 'CineX' },
+            onFinish: (data: any) => resolve(data?.txId),
+            onCancel: () => reject(new Error('User cancelled deposit')),
+          });
+        });
 
-      const deposit: EscrowDeposit = {
-        id: `escrow-${Date.now()}`,
-        campaignId,
-        depositor: this.userSession.loadUserData?.()?.profile?.stxAddress || 'SP...mock',
-        amount,
-        createdAt: Date.now(),
-        status: 'held',
-      };
+        const deposit: EscrowDeposit = {
+          id: `escrow-${Date.now()}`,
+          campaignId,
+          depositor: this.userSession.loadUserData?.()?.profile?.stxAddress || 'SP...mock',
+          amount,
+          createdAt: Date.now(),
+          status: 'held',
+        };
 
-      return { success: true, data: deposit };
+        return { success: true, data: deposit, transactionId: txId };
     } catch (err: any) {
       return { success: false, error: err?.message || String(err) };
     }
