@@ -92,6 +92,7 @@ export default function PublicCampaignForm({ onSubmit, onCancel }) {
         />
         {errors.logline && <p className="text-red-400 text-sm mt-1">{errors.logline}</p>}
         <p className="text-gray-400 text-xs mt-1">{formData.logline.length}/150</p>
+      </div>
 
       {/* Film Genre */}
       <div>

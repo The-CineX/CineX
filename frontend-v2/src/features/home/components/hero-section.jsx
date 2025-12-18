@@ -46,7 +46,7 @@ function HeroSection() {
             {/* Stats Row */}
             <div className="mt-16 grid grid-cols-3 gap-8 max-w-xl mx-auto">
               <div className="text-center backdrop-blur-sm bg-black/20 p-4 rounded-xl">
-                <p className="text-3xl md:text-4xl text-yellow-400 font-bold">0M+ STX</p>
+                <p className="text-3xl md:text-4xl text-yellow-400 font-bold">$0M+</p>
                 <p className="text-sm text-gray-300 mt-2">Funded</p>
               </div>
               <div className="text-center backdrop-blur-sm bg-black/20 p-4 rounded-xl">
