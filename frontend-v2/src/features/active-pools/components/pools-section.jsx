@@ -238,7 +238,7 @@ function PoolsSection() {
   const getProgress = (current, goal) => (current / goal) * 100;
 
   // Format currency
-  const formatCurrency = (amount) => `$${(amount / 1000).toFixed(0)}k`;
+  const formatCurrency = (amount) => `${(amount / 1000).toFixed(0)}k STX`;
 
   const PoolCard = ({ pool, featured = false }) => (
     <div className={`w-full ${featured ? 'lg:w-2/3' : 'md:w-1/2 lg:w-1/3'} p-4`}>

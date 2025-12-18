@@ -15,7 +15,7 @@
       ],
       "cta": {
         "label": "Create My Project Now",
-        "href": "/create-project"
+        "href": "/dashboard/filmmaker/create-campaign"
       }
     },
     {
