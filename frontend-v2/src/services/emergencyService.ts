@@ -8,7 +8,7 @@ export class EmergencyService {
   async pauseSystem(): Promise<ServiceResponse<null>> {
     if (!this.userSession?.isUserSignedIn?.()) return { success: false, error: 'Not signed in' };
     const network = getNetwork();
-    const contractAddress = getContractAddress();
+    const contractAddress = getContractAddress('core');
     const contractName = getContractName('core');
     try {
       await openContractCall({
@@ -28,7 +28,7 @@ export class EmergencyService {
   async resumeSystem(): Promise<ServiceResponse<null>> {
     if (!this.userSession?.isUserSignedIn?.()) return { success: false, error: 'Not signed in' };
     const network = getNetwork();
-    const contractAddress = getContractAddress();
+    const contractAddress = getContractAddress('core');
     const contractName = getContractName('core');
     try {
       await openContractCall({

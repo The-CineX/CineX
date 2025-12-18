@@ -12,7 +12,7 @@ export class EscrowService {
     }
 
     const network = getNetwork();
-    const contractAddress = getContractAddress();
+    const contractAddress = getContractAddress('escrow');
     const contractName = getContractName('escrow');
 
     try {

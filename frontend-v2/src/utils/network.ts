@@ -58,14 +58,34 @@ export function getNetwork(): StacksNetwork {
 /**
  * Get contract deployment address from environment
  */
-export function getContractAddress(): string {
-  const address = import.meta.env.VITE_CO_EP_CONTRACT_ADDRESS;
-  
-  if (!address) {
-    throw new Error('VITE_CO_EP_CONTRACT_ADDRESS not configured in environment');
+export function getContractAddress(contractType?: 'coep' | 'crowdfunding' | 'core' | 'verification' | 'escrow'): string {
+  // Allow per-contract addresses via environment variables. If contractType
+  // is provided, read the corresponding VITE_*_CONTRACT_ADDRESS. Otherwise
+  // fall back to a generic VITE_CONTRACT_ADDRESS or the CO_EP address for
+  // compatibility with existing code.
+  const envMap: Record<string, string> = {
+    coep: 'VITE_CO_EP_CONTRACT_ADDRESS',
+    crowdfunding: 'VITE_CROWDFUNDING_CONTRACT_ADDRESS',
+    core: 'VITE_MAIN_HUB_CONTRACT_ADDRESS',
+    verification: 'VITE_VERIFICATION_CONTRACT_ADDRESS',
+    escrow: 'VITE_ESCROW_CONTRACT_ADDRESS',
+  };
+
+  if (contractType) {
+    const key = envMap[contractType];
+    const addr = import.meta.env[key];
+    if (!addr) {
+      throw new Error(`${key} not configured in environment`);
+    }
+    return addr;
   }
-  
-  return address;
+
+  // No contractType provided — try generic fallback keys for backward compatibility
+  const fallback = import.meta.env.VITE_CONTRACT_ADDRESS || import.meta.env.VITE_CO_EP_CONTRACT_ADDRESS;
+  if (!fallback) {
+    throw new Error('No contract address configured in environment (set VITE_CONTRACT_ADDRESS or per-contract addresses)');
+  }
+  return fallback;
 }
 
 /**
@@ -94,7 +114,7 @@ export function getContractName(contractType: 'coep' | 'crowdfunding' | 'core' |
  * Build full contract identifier (address.contract-name)
  */
 export function getContractIdentifier(contractType: 'coep' | 'crowdfunding' | 'core' | 'verification' | 'escrow'): string {
-  const address = getContractAddress();
+  const address = getContractAddress(contractType);
   const name = getContractName(contractType);
   return `${address}.${name}`;
 }

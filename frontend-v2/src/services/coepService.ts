@@ -12,7 +12,7 @@ export class CoEPService {
     }
 
     const network = getNetwork();
-    const contractAddress = getContractAddress();
+    const contractAddress = getContractAddress('coep');
     const contractName = getContractName('coep');
 
     try {
@@ -94,7 +94,7 @@ export class CoEPService {
     }
 
     const network = getNetwork();
-    const contractAddress = getContractAddress();
+    const contractAddress = getContractAddress('coep');
     const contractName = getContractName('coep');
 
     try {

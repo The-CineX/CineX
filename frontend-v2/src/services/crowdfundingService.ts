@@ -72,9 +72,9 @@ export class CrowdfundingService {
 
       // Call smart contract to create campaign
       const network = getNetwork();
-      const contractAddress = getContractAddress();
+      const contractAddress = getContractAddress('crowdfunding');
       const contractName = getContractName('crowdfunding');
-      const verificationAddress = getContractAddress();
+      const verificationAddress = getContractAddress('verification');
       const verificationName = getContractName('verification');
 
       try {
@@ -175,9 +175,9 @@ export class CrowdfundingService {
 
       // Call smart contract to contribute to campaign
       const network = getNetwork();
-      const contractAddress = getContractAddress();
+      const contractAddress = getContractAddress('crowdfunding');
       const contractName = getContractName('crowdfunding');
-      const escrowAddress = getContractAddress();
+      const escrowAddress = getContractAddress('escrow');
       const escrowName = getContractName('escrow');
       const userAddress = this.userSession.loadUserData().profile.stxAddress.mainnet;
 

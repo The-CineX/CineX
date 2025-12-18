@@ -12,7 +12,7 @@ export class VerificationService {
     }
 
     const network = getNetwork();
-    const contractAddress = getContractAddress();
+    const contractAddress = getContractAddress('verification');
     const contractName = getContractName('verification');
 
     try {
