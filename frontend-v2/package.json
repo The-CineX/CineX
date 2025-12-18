@@ -11,7 +11,8 @@
     "docs": "cd docs && npm install && npm run dev"
   },
   "dependencies": {
-    "@stacks/connect": "^8.2.3",
+    "@stacks/connect": "^8.2.4",
+    "@stacks/transactions": "^7.3.1",
     "@tailwindcss/vite": "^4.0.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
